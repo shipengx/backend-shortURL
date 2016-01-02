@@ -37,10 +37,10 @@ public class ShortURLService {
 		
 		long id = helper.shortURLToId(shortURL);
 		System.out.println("short url is: " + shortURL);
-		
 		URL url = urlDAOImpl.get(id);
 		System.out.println("long url is: " + url.getLongURL());
-		URI targetURIForRedirection = new URI("http://" + url.getLongURL());
+		
+		URI targetURIForRedirection = new URI("http://" + url.getLongURL().replace("http://","").replace("https://",""));
 	    return Response.seeOther(targetURIForRedirection).build();
 	}
 	
